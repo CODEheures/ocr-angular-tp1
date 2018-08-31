@@ -9,12 +9,13 @@ import { AuthComponent } from './auth/auth.component';
 import { RouterModule, Route } from '@angular/router';
 import { DetailAppareilComponent } from './detail-appareil/detail-appareil.component';
 import { P404Component } from './p404/p404.component';
+import { AuthGuarg } from './services/auth-guard.service';
 
 
 const routes: Route[] = [
   { path: '', redirectTo: '/appareils', pathMatch: 'full'},
-  { path: 'appareils', component: ListAppareilsComponent},
-  { path: 'appareils/:id', component: DetailAppareilComponent},
+  { path: 'appareils', canActivate: [AuthGuarg], component: ListAppareilsComponent},
+  { path: 'appareils/:id', canActivate: [AuthGuarg], component: DetailAppareilComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'not-found', component: P404Component},
   { path: '**', redirectTo: '/not-found'}

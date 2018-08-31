@@ -12,7 +12,6 @@ export class AuthService {
   connect() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log('vous êtes connecté')
         this.isAuth = true
         resolve(true)
       }, 2000)
@@ -20,7 +19,6 @@ export class AuthService {
   }
 
   disconnect() {
-    console.log('vous êtes déconnecté')
     this.isAuth = false
   }
 }
