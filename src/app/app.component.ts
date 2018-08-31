@@ -9,28 +9,4 @@ import { AppareilService } from './services/appareil.service';
 })
 export class AppComponent {
 
-  public appareils: Appareil[]
-
-  public isAuth = false
-  public lastUpdate = new Promise((resolve, reject) => {
-    const date = new Date()
-    setTimeout(() => {
-      return resolve(date)
-    }, 3000)
-  })
-
-  constructor(private appareilService: AppareilService) {
-    this.appareils = appareilService.appareils
-    setTimeout(() => {
-      this.isAuth = true
-    }, 4000)
-  }
-
-  onAllumer() {
-    this.appareilService.switchAllOn()
-  }
-
-  onEteindre() {
-    this.appareilService.switchAllOff()
-  }
 }

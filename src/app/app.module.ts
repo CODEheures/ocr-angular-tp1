@@ -4,15 +4,28 @@ import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { AppareilComponent } from './appareil/appareil.component';
+import { ListAppareilsComponent } from './list-appareils/list-appareils.component';
+import { AuthComponent } from './auth/auth.component';
+import { RouterModule, Route } from '@angular/router';
 
+
+const routes: Route[] = [
+  { path: '', redirectTo: '/appareils', pathMatch: 'full'},
+  { path: 'appareils', component: ListAppareilsComponent},
+  { path: 'auth', component: AuthComponent},
+  { path: '**', redirectTo: 'appareils'}
+]
 @NgModule({
   declarations: [
     AppComponent,
-    AppareilComponent
+    AppareilComponent,
+    ListAppareilsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
