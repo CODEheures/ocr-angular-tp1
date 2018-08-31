@@ -1,0 +1,10 @@
+<ul class="list-group mb-3">
+  <li *ngFor="let appareil of appareils" class="list-group-item"
+    [ngClass]="{'list-group-item-success': appareil.state != 'eteint',
+                'list-group-item-danger': appareil.state === 'eteint'}">
+    <div *ngIf="appareil.state === 'eteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
+    <div *ngIf="appareil.state != 'eteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
+    <h4 [ngClass]="getTextColor(appareil)">Appareil: {{ appareil.name }} -- {{ appareil.state }}</h4>
+    <input type="text" class="form-control" [(ngModel)]="appareil.name"  />
+  </li>
+</ul>
