@@ -8,6 +8,7 @@ import { ListAppareilsComponent } from './list-appareils/list-appareils.componen
 import { AuthComponent } from './auth/auth.component';
 import { RouterModule, Route } from '@angular/router';
 import { DetailAppareilComponent } from './detail-appareil/detail-appareil.component';
+import { P404Component } from './p404/p404.component';
 
 
 const routes: Route[] = [
@@ -15,7 +16,8 @@ const routes: Route[] = [
   { path: 'appareils', component: ListAppareilsComponent},
   { path: 'appareils/:id', component: DetailAppareilComponent},
   { path: 'auth', component: AuthComponent},
-  { path: '**', redirectTo: 'appareils'}
+  { path: 'not-found', component: P404Component},
+  { path: '**', redirectTo: '/not-found'}
 ]
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ const routes: Route[] = [
     AppareilComponent,
     ListAppareilsComponent,
     AuthComponent,
-    DetailAppareilComponent
+    DetailAppareilComponent,
+    P404Component
   ],
   imports: [
     BrowserModule,
