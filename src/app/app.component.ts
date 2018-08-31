@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Appareil } from './interfaces/appareil';
+import { AppareilService } from './services/appareil.service';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public appareils = [
-    {'name': 'télévision', 'state': 'eteint'},
-    {'name': 'machine à laver', 'state': 'eteint'},
-    {'name':  'ordinateur', 'state': 'allumé' }
-  ]
+
+  public appareils: Appareil[]
 
   public isAuth = false
   public lastUpdate = new Promise((resolve, reject) => {
@@ -20,13 +19,18 @@ export class AppComponent {
     }, 3000)
   })
 
-  constructor() {
+  constructor(private appareilService: AppareilService) {
+    this.appareils = appareilService.appareils
     setTimeout(() => {
       this.isAuth = true
     }, 4000)
   }
 
   onAllumer() {
-    console.log('On allume tout!')
+    this.appareilService.switchAllOn()
+  }
+
+  onEteindre() {
+    this.appareilService.switchAllOff()
   }
 }

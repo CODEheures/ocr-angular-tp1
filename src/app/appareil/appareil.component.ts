@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Appareil } from '../interfaces/appareil';
+import { AppareilService } from '../services/appareil.service';
 
 @Component({
   selector: 'app-appareil',
@@ -7,12 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AppareilComponent implements OnInit {
 
-  @Input() appareils
+  @Input() appareils: Appareil[]
 
   public red = 'rgb(202, 69, 69)'
   public green = 'rgb(89, 202, 69)'
 
-  constructor() { }
+  constructor(private appareilService: AppareilService) { }
 
   ngOnInit() {
   }
@@ -27,5 +29,13 @@ export class AppareilComponent implements OnInit {
 
   getBgColor(appareil): string {
     return appareil.state === 'allumé' ? 'bg-success' : 'bg-danger'
+  }
+
+  onAllumer(index: number) {
+    this.appareilService.switchOn(index)
+  }
+
+  onEteindre(index: number) {
+    this.appareilService.switchOff(index)
   }
 }

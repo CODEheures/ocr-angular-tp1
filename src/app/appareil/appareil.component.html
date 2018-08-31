@@ -1,10 +1,14 @@
 <ul class="list-group mb-3">
-  <li *ngFor="let appareil of appareils" class="list-group-item"
-    [ngClass]="{'list-group-item-success': appareil.state != 'eteint',
-                'list-group-item-danger': appareil.state === 'eteint'}">
-    <div *ngIf="appareil.state === 'eteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
-    <div *ngIf="appareil.state != 'eteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
-    <h4 [ngClass]="getTextColor(appareil)">Appareil: {{ appareil.name }} -- {{ appareil.state }}</h4>
+  <li *ngFor="let appareil of appareils; let i = index" class="list-group-item"
+    [ngClass]="{'list-group-item-success': appareil.state != 'éteint',
+                'list-group-item-danger': appareil.state === 'éteint'}">
+    <div *ngIf="appareil.state === 'éteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
+    <div *ngIf="appareil.state != 'éteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
+    <h4>Appareil: {{ appareil.name }} -- {{ appareil.state }}</h4>
+    <div class="mb-1">
+      <button class="btn btn-success btn-sm mr-2" [disabled]="appareil.state ==='allumé'" (click)="onAllumer(i)">Allumer</button>
+      <button class="btn btn-danger btn-sm" [disabled]="appareil.state ==='éteint'" (click)="onEteindre(i)">Eteindre</button>
+    </div>
     <input type="text" class="form-control" [(ngModel)]="appareil.name"  />
   </li>
 </ul>
