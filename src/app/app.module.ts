@@ -7,11 +7,13 @@ import { AppareilComponent } from './appareil/appareil.component';
 import { ListAppareilsComponent } from './list-appareils/list-appareils.component';
 import { AuthComponent } from './auth/auth.component';
 import { RouterModule, Route } from '@angular/router';
+import { DetailAppareilComponent } from './detail-appareil/detail-appareil.component';
 
 
 const routes: Route[] = [
   { path: '', redirectTo: '/appareils', pathMatch: 'full'},
   { path: 'appareils', component: ListAppareilsComponent},
+  { path: 'appareils/:id', component: DetailAppareilComponent},
   { path: 'auth', component: AuthComponent},
   { path: '**', redirectTo: 'appareils'}
 ]
@@ -20,7 +22,8 @@ const routes: Route[] = [
     AppComponent,
     AppareilComponent,
     ListAppareilsComponent,
-    AuthComponent
+    AuthComponent,
+    DetailAppareilComponent
   ],
   imports: [
     BrowserModule,

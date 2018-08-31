@@ -7,12 +7,18 @@ import { Appareil } from '../interfaces/appareil';
 export class AppareilService {
 
   public appareils: Appareil[] = [
-    {'name': 'télévision', 'state': 'éteint'},
-    {'name': 'machine à laver', 'state': 'éteint'},
-    {'name':  'ordinateur', 'state': 'allumé' }
+    {'id': 1, 'name': 'télévision', 'state': 'éteint'},
+    {'id': 2, 'name': 'machine à laver', 'state': 'éteint'},
+    {'id': 3, 'name':  'ordinateur', 'state': 'allumé' }
   ]
 
   constructor() { }
+
+  getById(id: number) {
+    return this.appareils.find((item) => {
+      return item.id === id
+    })
+  }
 
   switchAllOn() {
     this.appareils.forEach(appareil => {

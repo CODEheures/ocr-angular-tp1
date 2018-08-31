@@ -4,7 +4,7 @@
                 'list-group-item-danger': appareil.state === 'éteint'}">
     <div *ngIf="appareil.state === 'éteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
     <div *ngIf="appareil.state != 'éteint'" [ngClass]="getBgColor(appareil)" style="height: 20px; width: 20px; float: right"></div>
-    <h4>Appareil: {{ appareil.name }} -- {{ appareil.state }}</h4>
+    <h4>Appareil: {{ appareil.name }} -- {{ appareil.state }}<small><a class="btn btn-xs btn-link" [routerLink]="[appareil.id]">détail</a></small></h4>
     <div class="mb-1">
       <button class="btn btn-success btn-sm mr-2" [disabled]="appareil.state ==='allumé'" (click)="onAllumer(i)">Allumer</button>
       <button class="btn btn-danger btn-sm" [disabled]="appareil.state ==='éteint'" (click)="onEteindre(i)">Eteindre</button>
