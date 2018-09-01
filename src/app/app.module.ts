@@ -10,11 +10,13 @@ import { RouterModule, Route } from '@angular/router';
 import { DetailAppareilComponent } from './detail-appareil/detail-appareil.component';
 import { P404Component } from './p404/p404.component';
 import { AuthGuarg } from './services/auth-guard.service';
+import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 
 
 const routes: Route[] = [
   { path: '', redirectTo: '/appareils', pathMatch: 'full'},
   { path: 'appareils', canActivate: [AuthGuarg], component: ListAppareilsComponent},
+  { path: 'appareils/edit', canActivate: [AuthGuarg], component: EditAppareilComponent},
   { path: 'appareils/:id', canActivate: [AuthGuarg], component: DetailAppareilComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'not-found', component: P404Component},
@@ -27,7 +29,8 @@ const routes: Route[] = [
     ListAppareilsComponent,
     AuthComponent,
     DetailAppareilComponent,
-    P404Component
+    P404Component,
+    EditAppareilComponent
   ],
   imports: [
     BrowserModule,

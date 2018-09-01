@@ -53,4 +53,18 @@ export class AppareilService {
     this.publishAppareils()
   }
 
+  addNew(name: string, state: string) {
+    let id = 0
+    this.appareils.forEach((appareil) => {
+      if (appareil.id > id)  { id  = appareil.id}
+    })
+    id++
+    this.appareils.push({
+      id: id,
+      name: name,
+      state: state
+    })
+    this.publishAppareils()
+  }
+
 }
