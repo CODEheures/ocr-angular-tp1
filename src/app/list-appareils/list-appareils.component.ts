@@ -30,7 +30,7 @@ export class ListAppareilsComponent implements OnInit, OnDestroy {
     this.appareilsSubscription = this.appareilService.appareilsSubject.subscribe((appareils) => {
       this.appareils = appareils
     })
-    this.appareilService.publishAppareils()
+    this.appareilService.getAppareilsFromFirebase()
     this.isAuth = this.authService.isAuth
   }
 
@@ -44,6 +44,10 @@ export class ListAppareilsComponent implements OnInit, OnDestroy {
 
   onEteindre() {
     this.appareilService.switchAllOff()
+  }
+
+  onSaveAll() {
+    this.appareilService.putAppareilsToFirebase()
   }
 
 }

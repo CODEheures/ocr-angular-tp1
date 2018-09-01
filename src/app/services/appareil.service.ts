@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Appareil } from '../interfaces/appareil';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,9 @@ export class AppareilService {
 
   public appareilsSubject: Subject<Appareil[]>
 
-  private appareils: Appareil[] = [
-    {'id': 1, 'name': 'télévision', 'state': 'éteint'},
-    {'id': 2, 'name': 'machine à laver', 'state': 'éteint'},
-    {'id': 3, 'name':  'ordinateur', 'state': 'allumé' }
-  ]
+  private appareils: Appareil[] = []
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.appareilsSubject = new Subject
   }
 
@@ -67,4 +64,23 @@ export class AppareilService {
     this.publishAppareils()
   }
 
+  putAppareilsToFirebase() {
+    this.http.put('https://testbdd-658f3.firebaseio.com/appareils.json', this.appareils)
+      .subscribe(
+        () => { console.log ('données enregistrées')},
+        (error) => { console.log('erreur d\'enregistrement' , error)}
+      )
+  }
+
+  getAppareilsFromFirebase() {
+    this.http.get<Appareil[]>('https://testbdd-658f3.firebaseio.com/appareils.json')
+      .subscribe(
+        (data) => {
+          console.log('reception des données', data)
+          this.appareils = data
+          this.publishAppareils()
+        },
+        (error) => { console.log('erreur de récupération', error)}
+      )
+  }
 }

@@ -4,7 +4,8 @@
     <p>Mise à jour le {{ lastUpdate | async | date:"short" }}</p>
     <app-appareil [appareils]="appareils"></app-appareil>
     <button class="btn btn-success mr-2" [disabled]="!isAuth" (click)="onAllumer()">Tout Allumer</button>
-    <button class="btn btn-danger" [disabled]="!isAuth" (click)="onEteindre()">Tout Eteindre</button>
+    <button class="btn btn-danger mr-2" [disabled]="!isAuth" (click)="onEteindre()">Tout Eteindre</button>
+    <button class="btn btn-primary mr-2" [disabled]="!isAuth" (click)="onSaveAll()">Tout Enregistrer</button>
   </div>
 </div>
 
