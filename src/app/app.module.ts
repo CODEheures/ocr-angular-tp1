@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { AppareilComponent } from './appareil/appareil.component';
@@ -11,6 +11,8 @@ import { DetailAppareilComponent } from './detail-appareil/detail-appareil.compo
 import { P404Component } from './p404/p404.component';
 import { AuthGuarg } from './services/auth-guard.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
+import { ListUsersComponent } from './list-users/list-users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 const routes: Route[] = [
@@ -18,6 +20,8 @@ const routes: Route[] = [
   { path: 'appareils', canActivate: [AuthGuarg], component: ListAppareilsComponent},
   { path: 'appareils/edit', canActivate: [AuthGuarg], component: EditAppareilComponent},
   { path: 'appareils/:id', canActivate: [AuthGuarg], component: DetailAppareilComponent},
+  { path: 'users', component: ListUsersComponent},
+  { path: 'users/add', component: EditUserComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'not-found', component: P404Component},
   { path: '**', redirectTo: '/not-found'}
@@ -30,12 +34,15 @@ const routes: Route[] = [
     AuthComponent,
     DetailAppareilComponent,
     P404Component,
-    EditAppareilComponent
+    EditAppareilComponent,
+    ListUsersComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <a routerLink="/users/add">Ajouter un utilisateur</a>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let user of users">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <p>{{ user.email }}</p>
+        <p>Boisson préférée: {{ user.preferredDrink }}</p>
+        <p *ngIf="user.hobbies && user.hobbies.length > 0">
+          Hobbies: 
+          <span *ngFor="let hobby of user.hobbies">{{ hobby }} - </span>
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>
